@@ -107,6 +107,11 @@ Then open:
 > Full setup instructions, environment variables, and test flows are in the individual `backend/` and `frontend/` folders.
 
 ---
+## Screenshots-<img width="1883" height="894" alt="Screenshot (608)" src="https://github.com/user-attachments/assets/8139de0d-461f-4be8-b406-22069789df33" />
+<img width="1920" height="897" alt="Screenshot (609)" src="https://github.com/user-attachments/assets/76787dca-889c-48d0-b7ee-8b9ed2470e65" />
+<img width="1920" height="894" alt="Screenshot (610)" src="https://github.com/user-attachments/assets/da96346c-4b80-4439-aa57-e27b005f1a64" />
+
+
 
 ## 🎯 The Bar We Set for Ourselves
 
