@@ -10,7 +10,7 @@ No black box charges. No runaway discounts. No silent failures. Every action an 
 
 ## 🚨 The Problem
 
-The next wave of commerce isn't humans clicking "Buy Now", it's AI agents doing it for them. Protocols like AP2, ACP, and x402 are racing to define how AI-to-merchant transactions should work, and merchants who aren't "agent-ready" will simply become invisible to an entire new category of buyer.
+The next wave of commerce isn't humans clicking "Buy Now", it's AI agents doing it for them. Protocols like AP2, ACP, and x402 are racing to define how AI to merchant transactions should work, and merchants who aren't "agent ready" will simply become invisible to an entire new category of buyer.
 
 But handing an LLM the ability to move money is terrifying if there's no guardrail. A hallucinated discount, a misread price, a retried request that double charges : these aren't hypothetical, they're inevitable at scale.
 
@@ -23,21 +23,21 @@ But handing an LLM the ability to move money is terrifying if there's no guardra
 AgentCommerce Firewall answers that with three layers working together:
 
 ### 1. 🗂️ Agent-Readable Catalog
-A structured, machine-queryable endpoint (`/api/catalog` + `/.well-known/agent-commerce.json`) that lets *any* external AI agent — not just our own chatbot — discover what a merchant sells and how to transact with them.
+A structured, machine queryable endpoint (`/api/catalog` + `/.well-known/agent-commerce.json`) that lets *any* external AI agent not just our own chatbot discover what a merchant sells and how to transact with them.
 
 ### 2. 💬 Conversational Checkout Agent
-A natural-language buying experience where an LLM negotiates, proposes bundles, and quotes prices — but never charges anything without an explicit, visible confirmation step.
+A natural language buying experience where an LLM negotiates, proposes bundles, and quotes prices but never charges anything without an explicit, visible confirmation step.
 
 ### 3. 🔥 The Money Action Firewall
-Before *any* discount, charge, or refund reaches Razorpay, it's checked against merchant-defined policy: max discount %, max order value, max refund amount, session spend caps. Violations are blocked immediately, with a human-readable reason — not a silent failure, not a hallucinated bypass.
+Before *any* discount, charge, or refund reaches Razorpay, it's checked against merchant defined policy: max discount %, max order value, max refund amount, session spend caps. Violations are blocked immediately, with a human-readable reason not a silent failure, not a hallucinated bypass.
 
-Every decision — the buyer's request, the agent's reasoning, the policy snapshot applied, the approve/block outcome, and the Razorpay response is written to a live **Audit Trail** the merchant can watch unfold in real time.
+Every decision the buyer's request, the agent's reasoning, the policy snapshot applied, the approve or block outcome, and the Razorpay response is written to a live **Audit Trail** the merchant can watch unfold in real time.
 
 ---
 
 ## ✨ What Makes This Different
 
-Most agentic-commerce demos do *one* thing:a chatbot, or a discount bot, or a catalog feed. AgentCommerce Firewall is the connective tissue underneath all of them:
+Most agentic commerce demos do *one* thing:a chatbot, or a discount bot, or a catalog feed. AgentCommerce Firewall is the connective tissue underneath all of them:
 
 | Feature | Why it matters |
 |---|---|
@@ -46,7 +46,7 @@ Most agentic-commerce demos do *one* thing:a chatbot, or a discount bot, or a ca
 | 📜 **Policy Snapshotting** | The audit log shows exactly which rules were active at the moment of each decision |
 | 💳 **Session Spend Caps** | Blocks the "many small approved transactions" exploit that per-order limits miss |
 | 🩹 **Graceful Failure Recovery** | Failed payments don't crash the flow the agent explains and offers a real recovery path |
-| 🌐 **Headless Agent-to-Agent API** | Provably works for *external* AI agents via direct API calls, not just our own UI |
+| 🌐 **Headless Agent to Agent API** | Provably works for *external* AI agents via direct API calls, not just our own UI |
 | 🔐 **Webhook Signature Verification** | Payment status updates are cryptographically verified, not blindly trusted |
 
 ---
@@ -112,7 +112,7 @@ Then open:
 
 > *"Every money action explainable, bounded and gated. Show the audit trail and one failure handled gracefully."*
 
-That line from the brief isn't a checkbox for us — it's the entire architecture. If an AI is going to spend money on someone's behalf, the least it owes them is a reason.
+That line from the brief isn't a checkbox for us it's the entire architecture. If an AI is going to spend money on someone's behalf, the least it owes them is a reason.
 
 ---
 
