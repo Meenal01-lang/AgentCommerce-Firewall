@@ -1,0 +1,32 @@
+# Environment files (contains real API keys - never commit)
+backend/.env
+frontend/.env.local
+.env
+.env.local
+
+# Dependencies
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Database
+backend/prisma/dev.db
+backend/dev.db
+*.db
+*.db-journal
+
+# Next.js build output
+frontend/.next/
+.next/
+
+# TypeScript build output
+backend/dist/
+dist/
+
+# Logs
+npm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

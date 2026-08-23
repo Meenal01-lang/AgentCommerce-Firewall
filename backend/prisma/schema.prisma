@@ -1,0 +1,70 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id                String   @id @default(uuid())
+  name              String
+  price             Float    // In INR
+  description       String
+  tags              String   // Comma-separated tags
+  bundleEligibility Boolean  @default(false)
+  stock             Int
+  createdAt         DateTime @default(now())
+}
+
+model Policy {
+  id                 String   @id @default("singleton")
+  maxDiscountPercent Float    @default(20.0) // E.g., 20%
+  maxSingleOrderVal  Float    @default(10000.0) // E.g., 10,000 INR
+  maxRefundAmount    Float    @default(5000.0)  // E.g., 5,000 INR
+  maxSpendPerSession Float    @default(25000.0) // E.g., 25,000 INR limit per buyer session
+  whitelistedUpsell  String   // Comma-separated product IDs
+  updatedAt          DateTime @updatedAt
+}
+
+model Order {
+  id                String   @id @default(uuid())
+  sessionId         String   // Associate with buyer session
+  razorpayOrderId   String?  @unique
+  razorpayPaymentId String?
+  amount            Float
+  discountAmount    Float    @default(0.0)
+  discountPercent   Float    @default(0.0)
+  status            String   // PENDING, PAID, FAILED, REFUNDED
+  customerName      String   @default("Anonymous Buyer")
+  items             String   // JSON array of purchased items
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  refunds           Refund[]
+}
+
+model Refund {
+  id               String   @id @default(uuid())
+  orderId          String
+  amount           Float
+  razorpayRefundId String?
+  status           String   // PENDING, SUCCESS, FAILED
+  reason           String
+  createdAt        DateTime @default(now())
+  order            Order    @relation(fields: [orderId], references: [id])
+}
+
+model AuditLog {
+  id             String   @id @default(uuid())
+  sessionId      String   // Track which session this audit refers to
+  timestamp      DateTime @default(now())
+  buyerMessage   String?  // Buyer query or interaction
+  agentReasoning String   // Captured reasoning returned by the LLM
+  actionType     String   // BROWSE, QUOTE, CHECKOUT, DISCOUNT, REFUND
+  actionDetails  String   // JSON string of inputs/params
+  policyStatus   String   // APPROVED, BLOCKED
+  policyReason   String?  // Rejection message if blocked
+  policySnapshot String   // JSON snapshot of policy values active at evaluation
+  apiResponse    String?  // Razorpay API response or error logs
+}
